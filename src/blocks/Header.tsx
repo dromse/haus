@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { GEOMETRY } from "../values/geometry";
 import { Logo } from "../components/Logo";
+import { GEOMETRY } from "../values/geometry";
 
 const Wrapper = styled.header`
   position: relative;
@@ -26,25 +26,36 @@ const Navigation = styled.nav`
   padding: 40px 0;
 `;
 
-const ListItem = styled.li`
-`
+const Link = styled.a``;
 
 export const Header = () => {
   return (
     <Wrapper>
       <Navigation>
         <List>
-          <li>Shop</li>
-          <li>Membership</li>
-          <li>Our story</li>
+          <li>
+            <Link>Shop</Link>
+          </li>
+          <li>
+            <Link>Membership</Link>
+          </li>
+          <li>
+            <Link>Our story</Link>
+          </li>
         </List>
-        
+
         <Logo />
 
         <List>
-          <li>Newsletter</li>
-          <li>Account</li>
-          <li>Cart (0)</li>
+          <li>
+            <Link>Newsletter</Link>
+          </li>
+          <li>
+            <Link>Account</Link>
+          </li>
+          <li>
+            <Link>Cart (0)</Link>
+          </li>
         </List>
       </Navigation>
     </Wrapper>
