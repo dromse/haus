@@ -6,7 +6,6 @@ const Wrapper = styled.header`
   position: relative;
   background-color: transparent;
   color: white;
-  width: 100%;
   display: flex;
   justify-content: center;
 `;
@@ -22,6 +21,7 @@ const Navigation = styled.nav`
   position: absolute;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   min-width: ${GEOMETRY.containerPx};
   padding: 40px 0;
 `;

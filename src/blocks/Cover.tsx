@@ -5,7 +5,7 @@ import imageUrl from "/cover-image.jpg";
 const Wrapper = styled.section`
   background-color: #996b60;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
 `;
 
@@ -13,13 +13,13 @@ const Headline = styled.h1`
   font-size: 73px;
   font-family: "PT Serif", serif;
   font-weight: 400;
-  width: 550px;
+  max-width: 550px;
   line-height: 96px;
 `;
 
 const Subtitle = styled.p`
   font-size: 18px;
-  width: 572px;
+  max-width: 572px;
   line-height: 32px;
 `;
 
@@ -31,16 +31,16 @@ const Body = styled.div`
   padding-buttom: 100px;
   display: flex;
   flex-direction: column;
-  gap: 45px;
   justify-content: end;
+  gap: 45px;
 `;
 
 const Image = styled.div`
   background-image: url(${imageUrl});
   background-repeat: no-repeat;
   background-size: cover;
-  width: 50%;
-  height: 100%;
+  min-width: 50%;
+  min-height: 100%;
 `;
 
 export const Cover = () => {
