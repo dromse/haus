@@ -46,7 +46,7 @@ const Image = styled.div`
 export const Cover = () => {
   return (
     <Wrapper>
-      <Image/>
+      <Image />
 
       <Body>
         <Headline>Alcohol for the modern drinker</Headline>
@@ -56,7 +56,10 @@ export const Cover = () => {
           good about. Just pour, sip, and enjoy.
         </Subtitle>
 
-        <Button title="Shop All" />
+        <Button
+          href="/shop"
+          title="Shop All"
+        />
       </Body>
     </Wrapper>
   );

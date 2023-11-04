@@ -8,6 +8,7 @@ const Link = styled.a`
   color: white;
   transition: all 0.5s ease;
   text-decoration: none;
+  font-size: 12px;
 
   &:hover {
     background-color: white;
@@ -16,6 +17,13 @@ const Link = styled.a`
   }
 `;
 
-export const Button = (props: { title: string }) => {
-  return <Link href="/shop-all">{props.title}</Link>;
+type Props = {
+  title: string;
+  href: string;
+};
+
+export const Button = (props: Props) => {
+  const { title, href } = props;
+
+  return <Link href={href}>{title}</Link>;
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LinkUnderline } from "../components/LinkUnderline";
 import { Logo } from "../components/Logo";
 import { GEOMETRY } from "../values/geometry";
 
@@ -24,9 +25,8 @@ const Navigation = styled.nav`
   align-items: center;
   min-width: ${GEOMETRY.containerPx};
   padding: 40px 0;
+  height: 96px;
 `;
-
-const Link = styled.a``;
 
 export const Header = () => {
   return (
@@ -34,13 +34,28 @@ export const Header = () => {
       <Navigation>
         <List>
           <li>
-            <Link>Shop</Link>
+            <LinkUnderline
+              theme="white"
+              href="/shop"
+            >
+              Shop
+            </LinkUnderline>
           </li>
           <li>
-            <Link>Membership</Link>
+            <LinkUnderline
+              theme="white"
+              href="/membership"
+            >
+              Membership
+            </LinkUnderline>
           </li>
           <li>
-            <Link>Our story</Link>
+            <LinkUnderline
+              theme="white"
+              href="/about"
+            >
+              Our story
+            </LinkUnderline>
           </li>
         </List>
 
@@ -48,13 +63,28 @@ export const Header = () => {
 
         <List>
           <li>
-            <Link>Newsletter</Link>
+            <LinkUnderline
+              theme="white"
+              href="/newsletter"
+            >
+              Newsletter
+            </LinkUnderline>
           </li>
           <li>
-            <Link>Account</Link>
+            <LinkUnderline
+              theme="white"
+              href="/account"
+            >
+              Account
+            </LinkUnderline>
           </li>
           <li>
-            <Link>Cart (0)</Link>
+            <LinkUnderline
+              theme="white"
+              href="/cart"
+            >
+              Cart (0)
+            </LinkUnderline>
           </li>
         </List>
       </Navigation>

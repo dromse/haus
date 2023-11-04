@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Banner } from "./blocks/Banner";
 import { Cover } from "./blocks/Cover";
 import { Header } from "./blocks/Header";
+import { Products } from "./blocks/Products";
 import { Testimonials } from "./blocks/Testimonials";
 import Divider from "./components/Divider";
 import { GEOMETRY } from "./values/geometry";
@@ -24,6 +25,9 @@ function App() {
 
       <Content>
         <Testimonials />
+        <Divider />
+
+        <Products />
         <Divider />
       </Content>
     </Wrapper>

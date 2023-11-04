@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "imgUrl": "/products/1.png",
+    "title": "The Sampler Kit",
+    "content": "Try a variety of Haus flavors with our customizable four-bottle kit. Each bottle serves 2-3 drinks.",
+    "link": "/product_page"
+  },
+  {
+    "id": 2,
+    "imgUrl": "/products/2.png",
+    "title": "Grapefruit Jalapeño",
+    "content": "Light and refreshing, this aperitif is a bright blend of citrus with a subtle kick of fresh jalapeño.",
+    "link": "/product_page",
+    "bestSeller": true
+  },
+  {
+    "id": 3,
+    "imgUrl": "/products/3.png",
+    "title": "Citrus Flower",
+    "content": "A fresh Californian take on the apéritif. Made with crisp lemon and subtle elderflower.",
+    "link": "/product_page",
+    "bestSeller": true
+  }
+]

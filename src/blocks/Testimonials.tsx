@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Testimonial from "../components/Testimonial";
-import { testimonialsData } from "../values/testimonials";
+import testimonialsData from "../values/testimonials.json";
 
 const Wrapper = styled.div`
   display: flex;
