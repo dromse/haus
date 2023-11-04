@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Button } from "../components/Button";
-import imageUrl from "/cover-image.jpg";
 
 const Wrapper = styled.section`
   background-color: #996b60;
@@ -36,7 +35,7 @@ const Body = styled.div`
 `;
 
 const Image = styled.div`
-  background-image: url(${imageUrl});
+  background-image: url("https://i.ibb.co/ngg5Hcr/cover-image.webp");
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 50%;

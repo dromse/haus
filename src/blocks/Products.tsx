@@ -1,7 +1,8 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { LinkUnderline } from "../components/LinkUnderline";
 import { ProductCard } from "../components/ProductCard";
-import productData from "../values/products.json";
 
 const Wrapper = styled.section`
   display: flex;
@@ -28,6 +29,14 @@ const Items = styled.div`
 `;
 
 export const Products = () => {
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://632cd2bd519d17fb53b47e3a.mockapi.io/api/v1/products")
+      .then((res) => setProductData(res.data));
+  }, []);
+
   return (
     <Wrapper>
       <Title>Made with natural ingredients, nothing fake</Title>
