@@ -5,11 +5,13 @@ const Wrapper = styled.section`
   background-color: #996b60;
   color: white;
   display: flex;
-  height: 90vh;
+
+  @media (min-width: 1200px) {
+    height: 100vh;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
-    height: auto;
   }
 `;
 
