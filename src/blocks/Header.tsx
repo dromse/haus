@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import BurgerMenuIcon from "../components/BurgerMenuIcon";
 import { LinkUnderline } from "../components/LinkUnderline";
 import { Logo } from "../components/Logo";
-import { GEOMETRY } from "../values/geometry";
 
 const Wrapper = styled.header`
   position: relative;
@@ -14,8 +14,12 @@ const Wrapper = styled.header`
 const List = styled.ul`
   display: flex;
   list-style-type: none;
-  font-size: 18px;
+  font-size: 14px;
   gap: 60px;
+
+  @media (max-width: 968px) {
+    display: none;
+  }
 `;
 
 const Navigation = styled.nav`
@@ -23,9 +27,17 @@ const Navigation = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: ${GEOMETRY.containerPx};
+  width: 85%;
   padding: 40px 0;
   height: 96px;
+`;
+
+const VisibilityContainer = styled.div`
+  display: none;
+
+  @media (max-width: 968px) {
+    display: block;
+  }
 `;
 
 export const Header = () => {
@@ -59,7 +71,9 @@ export const Header = () => {
           </li>
         </List>
 
-        <Logo />
+        <a href="/">
+          <Logo />
+        </a>
 
         <List>
           <li>
@@ -87,6 +101,10 @@ export const Header = () => {
             </LinkUnderline>
           </li>
         </List>
+
+        <VisibilityContainer>
+          <BurgerMenuIcon />
+        </VisibilityContainer>
       </Navigation>
     </Wrapper>
   );

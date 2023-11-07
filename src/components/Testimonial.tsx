@@ -3,6 +3,7 @@ import styled from "styled-components";
 type Props = {
   content: string;
   imgUrl: string;
+  companyDesc: string;
 };
 
 const Wrapper = styled.div`
@@ -16,12 +17,15 @@ const Wrapper = styled.div`
 `;
 
 export default function Testimonial(props: Props) {
-  const { content, imgUrl } = props;
+  const { content, imgUrl, companyDesc } = props;
 
   return (
     <Wrapper>
       <p>“{content}”</p>
-      <img src={imgUrl} />
+      <img
+        src={imgUrl}
+        alt={companyDesc}
+      />
     </Wrapper>
   );
 }

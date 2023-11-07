@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   margin: 0 auto;
-  width: ${GEOMETRY.containerPx};
+  max-width: ${GEOMETRY.containerPx};
 `;
 
 function App() {

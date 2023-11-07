@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 665px;
+  height: 565px;
   width: 383px;
   position: relative;
 `;
@@ -61,8 +61,13 @@ const Badge = styled.div`
   flex-direction: column;
 `;
 
+const Image = styled.img`
+  max-width: 80%;
+  height: auto;
+`;
+
 export const ProductCard = ({ product }: Props) => {
-  const { imgUrl, title, content, link, bestSeller } = product;
+  const { imgUrl, title, content, link, bestSeller, imgDesc } = product;
 
   return (
     <Wrapper>
@@ -73,7 +78,10 @@ export const ProductCard = ({ product }: Props) => {
         </Badge>
       )}
 
-      <img src={imgUrl} />
+      <Image
+        src={imgUrl}
+        alt={imgDesc}
+      />
 
       <Title>{title}</Title>
       <Content>{content}</Content>

@@ -4,8 +4,13 @@ import { Button } from "../components/Button";
 const Wrapper = styled.section`
   background-color: #996b60;
   color: white;
-  min-height: 100vh;
   display: flex;
+  height: 90vh;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 const Headline = styled.h1`
@@ -14,6 +19,12 @@ const Headline = styled.h1`
   font-weight: 400;
   max-width: 550px;
   line-height: 96px;
+
+  @media (max-width: 768px) {
+    font-size: 60px;
+    line-height: 60px;
+    text-wrap: balance;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -23,15 +34,20 @@ const Subtitle = styled.p`
 `;
 
 const Body = styled.div`
-  height: 800px;
-  width: 50%;
-  padding: 0 60px;
-  padding-top: 277px;
-  padding-buttom: 100px;
+  padding: 180px 60px 100px;
   display: flex;
   flex-direction: column;
   justify-content: end;
   gap: 45px;
+
+  @media (max-width: 768px) {
+    padding: 120px 0px 50px;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-wrap: balance;
+  }
 `;
 
 const Image = styled.div`
@@ -39,7 +55,6 @@ const Image = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 50%;
-  min-height: 100%;
 `;
 
 export const Cover = () => {

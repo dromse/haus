@@ -10,26 +10,43 @@ const Wrapper = styled.section`
   align-items: center;
   padding-top: 105px;
   padding-bottom: 125px;
+
+  @media (max-width: 768px) {
+    padding-top: 30px;
+  }
+  @media (max-width: 1268px) {
+    padding-bottom: 50px;
+  }
 `;
 
 const Title = styled.h2`
   font-family: "PT Serif", serif;
   line-height: 80px;
   font-size: 64px;
-  width: 750px;
+  max-width: 750px;
   text-align: center;
   margin-bottom: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
 `;
 
 const Items = styled.div`
   margin-top: 52px;
   display: flex;
+  flex-wrap: wrap;
   gap: 55px;
   justify-content: space-around;
+
+  @media (max-width: 768px) {
+    margin-top: 0px;
+    gap: 0px;
+  }
 `;
 
 export const Products = () => {
-  const [productData, setProductData] = useState([]);
+  const [productData, setProductData] = useState<Product[]>([]);
 
   useEffect(() => {
     axios
@@ -45,7 +62,10 @@ export const Products = () => {
 
       <Items>
         {productData.map((product) => (
-          <ProductCard product={product}></ProductCard>
+          <ProductCard
+            key={product.id}
+            product={product}
+          ></ProductCard>
         ))}
       </Items>
     </Wrapper>
