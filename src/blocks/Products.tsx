@@ -14,6 +14,7 @@ const Wrapper = styled.section`
   @media (max-width: 768px) {
     padding-top: 30px;
   }
+
   @media (max-width: 1268px) {
     padding-bottom: 50px;
   }
@@ -29,6 +30,7 @@ const Title = styled.h2`
 
   @media (max-width: 768px) {
     font-size: 40px;
+    line-height: 50px;
   }
 `;
 

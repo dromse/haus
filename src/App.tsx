@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Banner } from "./blocks/Banner";
 import { Cover } from "./blocks/Cover";
 import { Header } from "./blocks/Header";
+import IntroToAperitifs from "./blocks/IntroToAperitifs";
 import { Products } from "./blocks/Products";
 import { Testimonials } from "./blocks/Testimonials";
 import Divider from "./components/Divider";
@@ -26,8 +27,9 @@ function App() {
       <Content>
         <Testimonials />
         <Divider />
-
         <Products />
+        <Divider />
+        <IntroToAperitifs />
         <Divider />
       </Content>
     </Wrapper>
