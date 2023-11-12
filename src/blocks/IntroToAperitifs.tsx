@@ -17,7 +17,6 @@ const Subtitle = styled.p`
   max-width: 550px;
   font-size: 18px;
   line-height: 32px;
-
 `
 
 const Body = styled.div`
@@ -25,6 +24,8 @@ const Body = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 60px 0px 95px;
+
+  text-wrap: balance;
 
   @media(max-width: 1440px) {
     padding-left: 30px; 

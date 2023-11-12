@@ -9,9 +9,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 565px;
-  width: 383px;
+  height: 600px;
+  max-width: 383px;
   position: relative;
+
+  /* @media (max-width: 38px) { */
+  /* } */
 `;
 
 const Title = styled.h3`
@@ -59,6 +62,13 @@ const Badge = styled.div`
   right: 0;
   text-transform: uppercase;
   flex-direction: column;
+
+  @media (max-width: 400px) {
+    width: 80px;
+    height: 80px;
+    right: 5%;
+    top: 2%;
+  }
 `;
 
 const Image = styled.img`
