@@ -71,18 +71,20 @@ export const Navbar = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
-  function onScroll() {
-    if (window.scrollY >= 50) {
-      setIsScrolled(true)
-    } else {
-      setIsScrolled(false)
-    }
-  }
-
-  window.addEventListener('scroll', onScroll)
-
   useEffect(
-    () => window.removeEventListener('scroll', onScroll), []
+    () => {
+      function onScroll() {
+        if (window.scrollY >= 50) {
+          setIsScrolled(true)
+        } else {
+          setIsScrolled(false)
+        }
+      }
+
+      window.addEventListener('scroll', onScroll)
+
+      return () => window.removeEventListener('scroll', onScroll)
+    }, []
   )
 
   function toggleBurgerMenu() {
