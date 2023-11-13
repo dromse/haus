@@ -28,9 +28,9 @@ const Navigation = styled.nav<{ $isScrolled?: boolean }>`
   padding: 40px 0;
   height: 96px;
   z-index: 10;
-  width: 100vw;
+  width: 98vw;
 
-  ${(props) => props.$isScrolled && css`background-color: ${COLOR.background}; top: 0; position: fixed;`};
+  ${(props) => props.$isScrolled && css`background-color: ${COLOR.background}; top: 0; position: fixed; width: 100vw;`};
 `;
 
 const DesktopNavigation = styled(Navigation)`
