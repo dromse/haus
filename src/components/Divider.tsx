@@ -5,11 +5,6 @@ const Line = styled.div`
   height: 1px;
   background-color: #bdbdbd;
   width: 100%;
-
-  @media (max-width: 1330px) {
-
-  width: 80%;
-  }
 `;
 
 const Divider = () => {

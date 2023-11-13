@@ -1,21 +1,19 @@
 import styled from "styled-components";
 import { Banner } from "./blocks/Banner";
+import Benefits from "./blocks/Benefits";
+import CustomerReviews from "./blocks/CustomerReviews";
 import { Hero } from "./blocks/Hero";
 import IntroToAperitifs from "./blocks/IntroToAperitifs";
 import { Navbar } from "./blocks/Navbar";
 import { Products } from "./blocks/Products";
 import { Testimonials } from "./blocks/Testimonials";
 import Divider from "./components/Divider";
-import { GEOMETRY } from "./values/geometry";
+import Container from "./components/Container";
 
 const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const Content = styled.div`
-  margin: 0 auto;
-  max-width: ${GEOMETRY.containerPx};
-`;
 
 function App() {
   return (
@@ -24,14 +22,17 @@ function App() {
       <Navbar />
       <Hero />
 
-      <Content>
+      <Container>
         <Testimonials />
         <Divider />
         <Products />
         <Divider />
         <IntroToAperitifs />
         <Divider />
-      </Content>
+        <Benefits />
+      </Container>
+
+      <CustomerReviews />
     </Wrapper>
   );
 }
