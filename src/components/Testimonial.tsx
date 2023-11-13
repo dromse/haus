@@ -22,6 +22,7 @@ export default function Testimonial(props: Props) {
   return (
     <Wrapper>
       <p>“{content}”</p>
+
       <img
         src={imgUrl}
         alt={companyDesc}

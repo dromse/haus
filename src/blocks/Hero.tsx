@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Button } from "../components/Button";
+import { COLOR } from "../values/colors";
 
 const Wrapper = styled.section`
-  background-color: #996b60;
+  background-color: ${COLOR.background};
   color: white;
   display: flex;
 
@@ -59,7 +60,7 @@ const Image = styled.div`
   min-width: 50%;
 `;
 
-export const Cover = () => {
+export const Hero = () => {
   return (
     <Wrapper>
       <Image />
