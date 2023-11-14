@@ -28,8 +28,8 @@ const Body = styled.div`
   text-wrap: balance;
 
   @media(max-width: 1440px) {
-    padding-left: 30px; 
-    padding-right:  30px;
+    padding-left: 10px; 
+    padding-right:  10px;
   }
 
   @media(max-width: 1095px) {

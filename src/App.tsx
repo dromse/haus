@@ -10,6 +10,7 @@ import { Testimonials } from "./blocks/Testimonials";
 import Divider from "./components/Divider";
 import Container from "./components/Container";
 import WhyChooseUs from "./blocks/WhyChooseUs";
+import FollowUs from "./blocks/FollowUs";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -37,6 +38,8 @@ function App() {
       <Container>
         <WhyChooseUs />
       </Container>
+
+      <FollowUs />
     </Wrapper>
   );
 }
