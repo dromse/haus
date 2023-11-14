@@ -76,7 +76,7 @@ function Benefits() {
         </li>
       </Body>
 
-      <Image src="/benefits/benefits.webp"></Image>
+      <Image src="/benefits/benefits.webp" alt="2 bottle of haus"></Image>
     </Wrapper>
   )
 }

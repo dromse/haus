@@ -29,8 +29,6 @@ const Link = styled.a<{ $theme?: "white" | "black" }>`
     transform: scaleX(1);
     transform-origin: 0% 50%;
   }
-
-  padding: 21px;
 `;
 
 type Props = {

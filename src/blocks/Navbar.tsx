@@ -26,7 +26,7 @@ const Navigation = styled.nav<{ $isScrolled?: boolean }>`
   justify-content: space-between;
   align-items: center;
   padding: 40px 0;
-  height: 96px;
+  height: 70px;
   z-index: 10;
   width: 98vw;
 
@@ -43,7 +43,6 @@ const DesktopNavigation = styled(Navigation)`
 `
 
 const MobileNavigation = styled(Navigation)`
-  height: 80px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -55,6 +54,7 @@ const MobileNavigation = styled(Navigation)`
 const MobileList = styled.ul`
   position: fixed;
   display: flex;
+  gap: 30px;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
