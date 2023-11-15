@@ -1,8 +1,31 @@
 import styled, { css } from "styled-components";
 import { COLOR } from "../values/colors";
 
-const Link = styled.a<{ $theme?: "white" | "black" }>`
+type Theme = "white" | "black" | "gray";
+
+const Link = styled.a<{ $theme?: Theme, $uppercase?: boolean }>`
   text-transform: uppercase;
+
+  ${(props) => props.$uppercase === false && css`
+      text-transform: none;
+    `
+  }
+  color: black;
+  display: inline-block;
+
+  ${({ $theme }) => {
+    if ($theme === 'white') {
+      return css`
+        color: white;
+        border-color: ${COLOR.white};
+      `
+    } else if ($theme === 'gray') {
+      return css`
+        color: ${COLOR.gray};
+        border-color: ${COLOR.gray};
+      `
+    }
+  }};
 
   &:before {
     display: block;
@@ -18,11 +41,27 @@ const Link = styled.a<{ $theme?: "white" | "black" }>`
     transform-origin: 100% 50%;
     transition: transform 250ms ease-in-out;
 
-    ${(props) =>
-    props.$theme === "white" &&
-    css`
-        border-color: ${COLOR.white};
-      `};
+    ${({ $theme }) => {
+    if ($theme === 'white') {
+      return css`
+          border-color: ${COLOR.white};
+        `
+    } else if ($theme === 'gray') {
+      return css`
+          border-color: ${COLOR.white};
+        `
+    }
+  }};
+  }
+
+  &:hover {
+    ${({ $theme }) => {
+    if ($theme === 'gray') {
+      return css`
+          color: white;
+        `
+    }
+  }};
   }
 
   &:hover:after {
@@ -32,18 +71,20 @@ const Link = styled.a<{ $theme?: "white" | "black" }>`
 `;
 
 type Props = {
-  theme?: "white" | "black";
+  theme?: Theme;
   children: string;
   href: string;
+  uppercase?: boolean
 };
 
 export const LinkUnderline = (props: Props) => {
-  const { theme, children, href } = props;
+  const { theme, children, href, uppercase } = props;
 
   return (
     <Link
       $theme={theme}
       href={href}
+      $uppercase={uppercase}
     >
       {children}
     </Link>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR } from "../values/colors";
+import { LinkUnderline } from "./LinkUnderline";
 
 type Props = {
   column: { title: string; links: string[] };
@@ -20,7 +20,6 @@ const Title = styled.h4`
 `;
 
 const List = styled.ul`
-  color: ${COLOR.gray};
   font-size: 12px;
   line-height: 18px;
   display: flex;
@@ -42,7 +41,7 @@ function FooterColumn(props: Props) {
       <List>
         {column.links.map((link) => (
           <li key={link}>
-            <a href="/">{link}</a>
+            <LinkUnderline theme='gray' href="/">{link}</LinkUnderline>
           </li>
         ))}
       </List>

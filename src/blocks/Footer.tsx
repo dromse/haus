@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Container from "../components/Container";
 import FooterColumn from "../components/FooterColumn";
+import { LinkUnderline } from "../components/LinkUnderline";
 import { COLOR } from "../values/colors";
 import copyright from "../values/copyright.json";
 import footer_links from "../values/footer_links.json";
@@ -32,10 +33,7 @@ const Copyright = styled.div`
   font-size: 16px;
   line-height: 24px;
   flex-wrap: wrap;
-`;
-
-const Link = styled.a`
-  color: ${COLOR.gray};
+  align-items: center;
 `;
 
 const Title = styled.h3`
@@ -141,7 +139,7 @@ function Footer() {
           <span>{copyright.title}</span>
 
           {copyright.links.map((link) => (
-            <Link>{link}</Link>
+            <LinkUnderline href="/" theme="gray" uppercase={false}>{link}</LinkUnderline>
           ))}
         </Copyright>
       </MyContainer>
