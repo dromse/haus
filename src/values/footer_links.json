@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Explore",
+    "links": [
+      "Home",
+      "Shop",
+      "Membership",
+      "Our Story",
+      "FAQ",
+      "Refer a Friend",
+      "Corporate Gifting",
+      "Gift Card"
+    ]
+  },
+  {
+    "title": "Follow",
+    "links": [
+      "Instagram",
+      "Spotify",
+      "Twitter",
+      "Facebook"
+    ]
+  },
+  {
+    "title": "Drop us a line",
+    "links": [
+      "hello@drink.haus",
+      "press@drink.haus",
+      "partnerships@drink.haus",
+      "jobs@drink.haus",
+      "wholesale@drink.haus"
+    ]
+  }
+]
