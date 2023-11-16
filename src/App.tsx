@@ -1,49 +1,77 @@
-import styled from "styled-components";
-import { Banner } from "./blocks/Banner";
-import Benefits from "./blocks/Benefits";
-import CustomerReviews from "./blocks/CustomerReviews";
-import FollowUs from "./blocks/FollowUs";
+import {
+  Navigate,
+  Outlet,
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import styled, { css } from "styled-components";
 import Footer from "./blocks/Footer";
-import { Hero } from "./blocks/Hero";
-import IntroToAperitifs from "./blocks/IntroToAperitifs";
 import { Navbar } from "./blocks/Navbar";
-import { Products } from "./blocks/Products";
-import { Testimonials } from "./blocks/Testimonials";
-import WhyChooseUs from "./blocks/WhyChooseUs";
-import Container from "./components/Container";
-import Divider from "./components/Divider";
+import "./index.css";
+import Cart from "./pages/Cart";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import { useIsHomePage } from "./store";
 
 const Wrapper = styled.div`
-  margin: 0 auto;
+  padding-top: 60px;
+
+  ${() => {
+    const isHomePage = useIsHomePage((state) => state.isHomePage);
+
+    if (isHomePage) {
+      return css`
+        padding-top: 0px;
+      `;
+    }
+  }}
 `;
 
-function App() {
+function Layout() {
   return (
     <Wrapper>
-      <Banner message="Free shipping on orders over $50"></Banner>
       <Navbar />
-      <Hero />
-
-      <Container>
-        <Testimonials />
-        <Divider />
-        <Products />
-        <Divider />
-        <IntroToAperitifs />
-        <Divider />
-        <Benefits />
-      </Container>
-
-      <CustomerReviews />
-
-      <Container>
-        <WhyChooseUs />
-      </Container>
-
-      <FollowUs />
+      <Outlet />
       <Footer />
     </Wrapper>
   );
+}
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/"
+      element={<Layout />}
+    >
+      <Route
+        path="home"
+        element={<Home />}
+      />
+      <Route
+        path="cart"
+        element={<Cart />}
+      />
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
+      <Route
+        path="/"
+        element={
+          <Navigate
+            to="/home"
+            replace
+          />
+        }
+      />
+    </Route>,
+  ),
+);
+
+function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App;

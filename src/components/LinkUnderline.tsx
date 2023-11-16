@@ -1,29 +1,31 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { COLOR } from "../values/colors";
 
 type Theme = "white" | "black" | "gray";
 
-const Link = styled.a<{ $theme?: Theme, $uppercase?: boolean }>`
+const MyLink = styled(Link) <{ $theme?: Theme; $uppercase?: boolean }>`
   text-transform: uppercase;
 
-  ${(props) => props.$uppercase === false && css`
+  ${(props) =>
+    props.$uppercase === false &&
+    css`
       text-transform: none;
-    `
-  }
+    `}
   color: black;
   display: inline-block;
 
   ${({ $theme }) => {
-    if ($theme === 'white') {
+    if ($theme === "white") {
       return css`
         color: white;
         border-color: ${COLOR.white};
-      `
-    } else if ($theme === 'gray') {
+      `;
+    } else if ($theme === "gray") {
       return css`
         color: ${COLOR.gray};
         border-color: ${COLOR.gray};
-      `
+      `;
     }
   }};
 
@@ -42,24 +44,24 @@ const Link = styled.a<{ $theme?: Theme, $uppercase?: boolean }>`
     transition: transform 250ms ease-in-out;
 
     ${({ $theme }) => {
-    if ($theme === 'white') {
+    if ($theme === "white") {
       return css`
           border-color: ${COLOR.white};
-        `
-    } else if ($theme === 'gray') {
+        `;
+    } else if ($theme === "gray") {
       return css`
           border-color: ${COLOR.white};
-        `
+        `;
     }
   }};
   }
 
   &:hover {
     ${({ $theme }) => {
-    if ($theme === 'gray') {
+    if ($theme === "gray") {
       return css`
           color: white;
-        `
+        `;
     }
   }};
   }
@@ -74,19 +76,19 @@ type Props = {
   theme?: Theme;
   children: string;
   href: string;
-  uppercase?: boolean
+  uppercase?: boolean;
 };
 
 export const LinkUnderline = (props: Props) => {
   const { theme, children, href, uppercase } = props;
 
   return (
-    <Link
+    <MyLink
       $theme={theme}
-      href={href}
+      to={href}
       $uppercase={uppercase}
     >
       {children}
-    </Link>
+    </MyLink>
   );
 };

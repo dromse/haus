@@ -5,6 +5,7 @@ export const Logo = () => {
     <img
       src={imgLogo}
       alt="Logotype company Haus"
+      height="34"
     />
   );
 };

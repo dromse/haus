@@ -4,27 +4,35 @@ import { LinkUnderline } from "../components/LinkUnderline";
 import { COLOR } from "../values/colors";
 
 const Wrapper = styled.section`
-  background-image: url('/follow_us/follow-us.webp');
+  background-image: url("/follow_us/follow-us.webp");
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   padding: 60px;
 
-  @media(max-width: 600px) {
+  @media (max-width: 600px) {
     padding: 20px;
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     padding: 10px;
   }
-`
+
+  @media (max-width: 300px) {
+    padding: 10px 0;
+  }
+
+  @media (max-width: 250px) {
+    padding: 0px;
+  }
+`;
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 550px;
   gap: 22px;
-`
+`;
 
 const BodyItem = styled.div`
   background-color: ${COLOR.black};
@@ -35,26 +43,34 @@ const BodyItem = styled.div`
   gap: 26px;
   text-align: center;
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     padding: 30px;
   }
-`
+
+  @media (max-width: 300px) {
+    padding: 20px 10px;
+  }
+
+  @media (max-width: 250px) {
+    padding: 0px;
+  }
+`;
 
 const Title = styled.h2`
   font-family: "PT Serif", serif;
   font-size: 55px;
   line-height: 80px;
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     font-size: 45px;
     line-height: 45px;
   }
-`
+`;
 
 const Subtitle = styled.p`
   font-size: 16px;
   line-height: 28px;
-`
+`;
 
 const Button = styled.a`
   text-transform: uppercase;
@@ -75,16 +91,17 @@ const Button = styled.a`
 `;
 
 const Links = styled.div`
-  display: flex;  
+  display: flex;
   gap: 21px;
-`
+  flex-wrap: wrap;
+`;
 
 const MyContainer = styled(Container)`
-  @media(max-width: 1300px) {
+  @media (max-width: 1300px) {
     display: flex;
     justify-content: center;
   }
-`
+`;
 
 function FollowUs() {
   return (
@@ -93,25 +110,43 @@ function FollowUs() {
         <Body>
           <BodyItem>
             <Title>Set the mood</Title>
-            <Subtitle>Curated playlists from Woody + Helena, plus some of our friends and favorite brands.</Subtitle>
+
+            <Subtitle>
+              Curated playlists from Woody + Helena, plus some of our friends
+              and favorite brands.
+            </Subtitle>
+
             <Button>Spotify</Button>
           </BodyItem>
 
           <BodyItem>
-            <Subtitle>
-              Follow us, share us, drink Ha(us)
-            </Subtitle>
+            <Subtitle>Follow us, share us, drink Ha(us)</Subtitle>
 
             <Links>
-              <LinkUnderline href="instagram" theme="white">Instagram</LinkUnderline>
-              <LinkUnderline href="instagram" theme="white">Twitter</LinkUnderline>
-              <LinkUnderline href="instagram" theme="white">Facebook</LinkUnderline>
+              <LinkUnderline
+                href="instagram"
+                theme="white"
+              >
+                Instagram
+              </LinkUnderline>
+              <LinkUnderline
+                href="instagram"
+                theme="white"
+              >
+                Twitter
+              </LinkUnderline>
+              <LinkUnderline
+                href="instagram"
+                theme="white"
+              >
+                Facebook
+              </LinkUnderline>
             </Links>
           </BodyItem>
         </Body>
       </MyContainer>
     </Wrapper>
-  )
+  );
 }
 
 export default FollowUs;

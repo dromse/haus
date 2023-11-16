@@ -130,16 +130,28 @@ function Footer() {
 
           <Columns>
             {footer_links.map((column) => (
-              <FooterColumn column={column} />
+              <FooterColumn
+                key={column.title}
+                column={column}
+              />
             ))}
           </Columns>
         </Body>
 
         <Copyright>
-          <span>{copyright.title}</span>
+          <span>
+            {copyright.title} {new Date().getFullYear()}
+          </span>
 
           {copyright.links.map((link) => (
-            <LinkUnderline href="/" theme="gray" uppercase={false}>{link}</LinkUnderline>
+            <LinkUnderline
+              key={link}
+              href="/"
+              theme="gray"
+              uppercase={false}
+            >
+              {link}
+            </LinkUnderline>
           ))}
         </Copyright>
       </MyContainer>

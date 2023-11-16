@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Shop",
+    "link": "/shop"
+  },
+  {
+    "label": "Membership",
+    "link": "/membership"
+  },
+  {
+    "label": "Our story",
+    "link": "/our_story"
+  },
+  {
+    "label": "newsletter",
+    "link": "/newsletter"
+  },
+  {
+    "label": "account",
+    "link": "/account"
+  },
+  {
+    "label": "cart",
+    "link": "/cart"
+  }
+]

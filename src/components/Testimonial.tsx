@@ -16,6 +16,10 @@ const Wrapper = styled.div`
   line-height: 32px;
 `;
 
+const Image = styled.img`
+  max-width: 100%;
+`
+
 export default function Testimonial(props: Props) {
   const { content, imgUrl, companyDesc } = props;
 
@@ -23,7 +27,7 @@ export default function Testimonial(props: Props) {
     <Wrapper>
       <p>“{content}”</p>
 
-      <img
+      <Image
         src={imgUrl}
         alt={companyDesc}
       />
