@@ -17,6 +17,9 @@ import { useIsHomePage } from "./store";
 
 const Wrapper = styled.div`
   padding-top: 60px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
 
   ${() => {
     const isHomePage = useIsHomePage((state) => state.isHomePage);

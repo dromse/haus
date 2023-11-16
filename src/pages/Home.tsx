@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Benefits from "../blocks/Benefits";
 import CustomerReviews from "../blocks/CustomerReviews";
 import FollowUs from "../blocks/FollowUs";
@@ -10,13 +9,9 @@ import WhyChooseUs from "../blocks/WhyChooseUs";
 import Container from "../components/Container";
 import Divider from "../components/Divider";
 
-const Wrapper = styled.div`
-  margin: 0 auto;
-`;
-
 function Home() {
   return (
-    <Wrapper>
+    <main>
       <Hero />
 
       <Container>
@@ -36,7 +31,7 @@ function Home() {
       </Container>
 
       <FollowUs />
-    </Wrapper>
+    </main>
   );
 }
 
