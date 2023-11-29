@@ -13,6 +13,7 @@ import "./index.css";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Shop from "./pages/Shop";
 import { useIsHomePage } from "./store";
 
 const Wrapper = styled.div`
@@ -42,24 +43,25 @@ function Layout() {
   );
 }
 
+const routes = [
+  { path: "home", element: Home },
+  { path: "cart", element: Cart },
+  { path: "shop", element: Shop },
+  { path: "*", element: NotFound },
+];
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
       path="/"
       element={<Layout />}
     >
-      <Route
-        path="home"
-        element={<Home />}
-      />
-      <Route
-        path="cart"
-        element={<Cart />}
-      />
-      <Route
-        path="*"
-        element={<NotFound />}
-      />
+      {routes.map((route) => (
+        <Route
+          path={route.path}
+          element={<route.element />}
+        />
+      ))}
       <Route
         path="/"
         element={
