@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+
 import styled from "styled-components";
+import BigTitle from "../components/BigTitle";
 import { LinkUnderline } from "../components/LinkUnderline";
 import { ProductCard } from "../components/ProductCard";
-import BigTitle from "../components/BigTitle";
+import products from "../values/products.json"
 
 const Wrapper = styled.section`
   display: flex;
@@ -34,20 +36,18 @@ const Items = styled.div`
   }
 `;
 
-export const Products = () => {
-  const [productData, setProductData] = useState<Product[]>([]);
+function Shop() {
+  const [productData, setProductData] = useState<Product[]>(products);
 
-  useEffect(() => {
-    axios
-      .get("https://632cd2bd519d17fb53b47e3a.mockapi.io/api/v1/products")
-      .then((res) => setProductData(res.data));
-  }, []);
+  /* useEffect(() => { */
+  /*   axios */
+  /*     .get("https://632cd2bd519d17fb53b47e3a.mockapi.io/api/v1/products") */
+  /*     .then((res) => setProductData(res.data)); */
+  /* }, []); */
 
   return (
     <Wrapper>
-      <BigTitle>Made with natural ingredients, nothing fake</BigTitle>
-
-      <LinkUnderline href="/shop">Shop all flavours</LinkUnderline>
+      <BigTitle>Shop</BigTitle>
 
       <Items>
         {productData.map((product) => (
@@ -59,4 +59,6 @@ export const Products = () => {
       </Items>
     </Wrapper>
   );
-};
+}
+
+export default Shop;

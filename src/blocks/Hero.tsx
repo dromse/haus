@@ -54,7 +54,7 @@ const Body = styled.div`
 `;
 
 const Image = styled.div`
-  background-image: url("https://i.ibb.co/ngg5Hcr/cover-image.webp");
+  background-image: url("/cover-image.webp");
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 50%;

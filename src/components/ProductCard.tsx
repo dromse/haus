@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useCart } from "../store";
 import { COLOR } from "../values/colors";
 
 type Props = {
@@ -77,7 +78,8 @@ const Image = styled.img`
 `;
 
 export const ProductCard = ({ product }: Props) => {
-  const { imgUrl, title, content, link, bestSeller, imgDesc } = product;
+  const { imgUrl, title, content, link, bestSeller, imgDesc, id } = product;
+  const addToCart = useCart((state) => state.addItem);
 
   return (
     <Wrapper>
@@ -95,7 +97,14 @@ export const ProductCard = ({ product }: Props) => {
 
       <Title>{title}</Title>
       <Content>{content}</Content>
-      <Button href={link}>Shop now</Button>
+
+      <Button
+        onClick={() => {
+          addToCart({ productId: id.toString(), amount: 1 });
+        }}
+      >
+        Add to Cart
+      </Button>
     </Wrapper>
   );
 };
