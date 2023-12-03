@@ -78,7 +78,7 @@ const Image = styled.img`
 `;
 
 export const ProductCard = ({ product }: Props) => {
-  const { imgUrl, title, content, link, bestSeller, imgDesc, id } = product;
+  const { imgUrl, title, content, bestSeller, imgDesc, id } = product;
   const addToCart = useCart((state) => state.addItem);
 
   return (
