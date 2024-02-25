@@ -29,5 +29,9 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "description": "[Markup](https://www.figma.com/file/4ewoagAdJzqrEDgmVMUEyc/Haus?type=design&node-id=0-1&mode=design&t=pFqlilbQ9lbI1LBd-0)",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

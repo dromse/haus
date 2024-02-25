@@ -1,9 +1,9 @@
 type Product = {
-  id: number;
+  id: string;
   imgUrl: string;
-  imgDesc: string;
   title: string;
   content: string;
   link: string;
+  price: number;
   bestSeller?: boolean;
 };

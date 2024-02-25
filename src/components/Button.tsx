@@ -22,6 +22,33 @@ type Props = {
   href: string;
 };
 
+const Btn = styled.button`
+  padding: 10px 15px;
+  font-size: 15px;
+
+  &:hover {
+    filter: brightness(0.7);
+  }
+`;
+
+const RedBtn = styled(Btn)`
+  background-color: indianred;
+`;
+const YellowBtn = styled(Btn)`
+  background-color: yellow;
+`;
+const GreenBtn = styled(Btn)`
+  background-color: palegreen;
+`;
+
+export const IncreaseButton = (func) => (
+  <GreenBtn onClick={() => func}>+</GreenBtn>
+);
+export const DecreaseButton = (func) => (
+  <YellowBtn onClick={() => func}>-</YellowBtn>
+);
+export const DeleteButton = (func) => <RedBtn onClick={() => func}>x</RedBtn>;
+
 export const Button = (props: Props) => {
   const { title, href } = props;
 

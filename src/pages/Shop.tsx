@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import BigTitle from "../components/BigTitle";
 import { ProductCard } from "../components/ProductCard";
+import products from '../values/products.json';
 
 const Wrapper = styled.section`
   display: flex;
@@ -38,9 +39,7 @@ function Shop() {
   const [productData, setProductData] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios
-      .get("https://632cd2bd519d17fb53b47e3a.mockapi.io/api/v1/products")
-      .then((res) => setProductData(res.data));
+    setProductData(products)
   }, []);
 
   return (

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { LinkUnderline } from "../components/LinkUnderline";
 import { ProductCard } from "../components/ProductCard";
 import BigTitle from "../components/BigTitle";
+import products from '../values/products.json';
 
 const Wrapper = styled.section`
   display: flex;
@@ -32,15 +33,14 @@ const Items = styled.div`
     margin-top: 0px;
     gap: 0px;
   }
+
 `;
 
 export const Products = () => {
   const [productData, setProductData] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios
-      .get("https://632cd2bd519d17fb53b47e3a.mockapi.io/api/v1/products")
-      .then((res) => setProductData(res.data));
+    setProductData(products)
   }, []);
 
   return (

@@ -78,7 +78,7 @@ const Image = styled.img`
 `;
 
 export const ProductCard = ({ product }: Props) => {
-  const { imgUrl, title, content, bestSeller, imgDesc, id } = product;
+  const { imgUrl, title, content, bestSeller, id } = product;
   const addToCart = useCart((state) => state.addItem);
 
   return (
@@ -90,17 +90,16 @@ export const ProductCard = ({ product }: Props) => {
         </Badge>
       )}
 
-      <Image
-        src={imgUrl}
-        alt={imgDesc}
-      />
+      <Image src={imgUrl} alt="Product Image" />
 
       <Title>{title}</Title>
       <Content>{content}</Content>
 
+
+
       <Button
         onClick={() => {
-          addToCart({ productId: id.toString(), amount: 1 });
+          addToCart(product);
         }}
       >
         Add to Cart
