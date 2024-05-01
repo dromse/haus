@@ -1,5 +1,5 @@
+import { Product } from "@types";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 type CartItem = {
   productId: string;
@@ -15,18 +15,18 @@ type CartState = {
   cart: Cart | {};
   cartItems: CartItem[];
   addItem: (item: Product) => void;
-  deleteItem: (id: String) => void;
-  increaseItem: (id: String) => void;
-  decreaseItem: (id: String) => void;
+  deleteItem: (id: string) => void;
+  increaseItem: (id: string) => void;
+  decreaseItem: (id: string) => void;
 };
 
 export const useCart = create<CartState>()((set) => ({
   cart: { cartId: "123", cartItems: [] },
   cartItems: [],
-  addItem: (product) =>
+  addItem: (product): void =>
     set((state) => {
       const cartItemIndex = state.cartItems.findIndex(
-        (obj) => obj.productId === product.id
+        (obj) => obj.productId === product.id,
       );
 
       let amount = 1;
@@ -46,14 +46,16 @@ export const useCart = create<CartState>()((set) => ({
         cartItems: [...state.cartItems, { productId: product.id, amount }],
       };
     }),
-  deleteItem: (id: String) =>
+
+  deleteItem: (id: string): void =>
     set((state) => ({
       cartItems: [...state.cartItems.filter((item) => item.productId !== id)],
     })),
-  increaseItem: (id: String) =>
+
+  increaseItem: (id: string): void =>
     set((state) => {
       const cartItemIndex = state.cartItems.findIndex(
-        (obj) => obj.productId === id
+        (obj) => obj.productId === id,
       );
 
       let amount = 1;
@@ -71,10 +73,11 @@ export const useCart = create<CartState>()((set) => ({
 
       throw new Error("Not found.");
     }),
-  decreaseItem: (id: String) => {
+
+  decreaseItem: (id: string): void => {
     set((state) => {
       const cartItemIndex = state.cartItems.findIndex(
-        (obj) => obj.productId === id
+        (obj) => obj.productId === id,
       );
 
       let amount = 1;
