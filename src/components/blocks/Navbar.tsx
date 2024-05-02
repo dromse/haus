@@ -4,15 +4,11 @@ import { Logo } from "@components/reusable/Logo";
 import { COLOR } from "@consts/colors";
 import { GEOMETRY } from "@consts/geometry";
 import nav_links from "@consts/nav_links.json";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import styled, { RuleSet, css } from "styled-components";
+import styled from "styled-components";
 
-const Wrapper = styled.header<{
-  $paddingTop?: boolean;
-  $transperentOnStart?: boolean;
-  $isScrolled?: boolean;
-}>`
+const Wrapper = styled.header`
   display: flex;
   justify-content: center;
   width: 100%;
@@ -20,22 +16,7 @@ const Wrapper = styled.header<{
   z-index: 100;
   top: 0;
   height: 60px;
-
-  ${(props): RuleSet<object> | undefined => {
-    if (props.$isScrolled) {
-      return css`
-        background-color: ${COLOR.background};
-      `;
-    }
-  }}
-
-  ${(props): RuleSet<object> | undefined => {
-    if (!props.$transperentOnStart) {
-      return css`
-        background-color: ${COLOR.background};
-      `;
-    }
-  }}
+  background-color: ${COLOR.totalBlack};
 `;
 
 const List = styled.ul`
@@ -92,28 +73,13 @@ const MobileList = styled.ul`
 
 export const Navbar = (): React.JSX.Element => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-
-    return (): void => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   function toggleBurgerMenu(): void {
     setIsMenuVisible((prev) => !prev);
   }
 
-  function onScroll(): void {
-    if (window.scrollY >= 50) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  }
-
   return (
-    <Wrapper $isScrolled={isScrolled}>
+    <Wrapper>
       <DesktopNavigation>
         <List>
           {nav_links.slice(0, 3).map((item) => (

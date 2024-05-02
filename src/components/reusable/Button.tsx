@@ -1,3 +1,4 @@
+import { COLOR } from "@consts/colors";
 import styled from "styled-components";
 
 const Link = styled.a`
@@ -12,7 +13,7 @@ const Link = styled.a`
 
   &:hover {
     background-color: white;
-    color: black;
+    color: ${COLOR.black};
     cursor: pointer;
   }
 `;

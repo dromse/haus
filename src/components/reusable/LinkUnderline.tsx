@@ -15,7 +15,7 @@ const MyLink = styled(Link) <{ $theme?: Theme; $uppercase?: boolean }>`
     }
   }}
 
-  color: black;
+  color: ${COLOR.black};
   display: inline-block;
 
   ${({ $theme }): RuleSet<object> | undefined => {
