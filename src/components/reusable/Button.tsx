@@ -1,7 +1,8 @@
 import { COLOR } from "@consts/colors";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Link = styled.a`
+const MyLink = styled.a`
   border: 1px solid white;
   padding: 20px 52px;
   text-transform: uppercase;
@@ -21,10 +22,27 @@ const Link = styled.a`
 type Props = {
   title: string;
   href: string;
+  type?: string;
 };
 
 export const Button = (props: Props): React.JSX.Element => {
   const { title, href } = props;
 
-  return <Link href={href}>{title}</Link>;
+  return <MyLink href={href}>{title}</MyLink>;
 };
+
+export const BlackButton = styled(Link)`
+  text-transform: uppercase;
+  word-spacing: 1px;
+  font-size: 12px;
+  background-color: ${COLOR.black};
+  color: ${COLOR.white};
+  padding: 20px 50px;
+  border: 1px solid ${COLOR.black};
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: ${COLOR.white};
+    color: ${COLOR.black};
+  }
+`;

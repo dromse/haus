@@ -1,9 +1,10 @@
-import BigTitle from "@components/reusable/BigTitle";
+import { BlackButton } from "@components/reusable/Button";
 import Container from "@components/reusable/Container";
 import { COLOR } from "@consts/colors";
 import products from "@consts/products.json";
 import { useCart } from "@store";
 import { Product } from "@types";
+import { Minus, Plus, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -11,38 +12,100 @@ const Wrapper = styled.main`
   padding: 30px 10px;
 `;
 
-const MyTitle = styled(BigTitle)`
-  color: ${COLOR.gray};
+const Table = styled.table`
+  // border: 1px solid #a8b3bd;
+  font-size: 24px;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  color: ${COLOR.black};
 `;
 
-const List = styled.ul`
-  font-size: 18px;
+const Row = styled.tr`
+  // border: 1px solid #a8b3bd;
 `;
 
-const Menu = styled.span``;
+const HeadCell = styled.th`
+  // border: 1px solid #a8b3bd;
+  padding: 5px;
+`;
 
-const ListItem = styled.li`
+const Cell = styled.td`
+  // border: 1px solid #a8b3bd;
+  padding: 10px 0;
+`;
+
+const ProductHeadCell = styled(HeadCell)`
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
+  padding-left: 50px;
 `;
 
-const Btn = styled.button`
-  padding: 10px 15px;
-  font-size: 15px;
+const ProductCell = styled(Cell)`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: none;
+  padding-left: 5px;
+`;
+
+const QuantityHeadCell = styled(HeadCell)`
+  display: flex;
+  justify-content: end;
+`;
+
+const QuantityCell = styled(Cell)`
+  border: none;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+`;
+
+const TableButton = styled.button`
+  min-width: 35px;
+  min-height: 35px;
+  color: #a8b3bd;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
 
   &:hover {
-    filter: brightness(0.7);
+    border: 2px solid #a8b3bd;
+    border-radius: 100%;
+  }
+
+  &:active {
+    color: black;
+    border-color: black;
   }
 `;
 
-const RedBtn = styled(Btn)`
-  background-color: indianred;
+const PlusButton = styled(TableButton)`
+  &:active {
+    color: green;
+    border-color: green;
+  }
 `;
-const YellowBtn = styled(Btn)`
-  background-color: yellow;
+
+const MinusButton = styled(TableButton)`
+  &:active {
+    color: red;
+    border-color: red;
+  }
 `;
-const GreenBtn = styled(Btn)`
-  background-color: palegreen;
+
+const Bottom = styled.div`
+  padding-top: 30px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+`;
+
+const Image = styled.img`
+  width: 100px;
 `;
 
 export default function Cart(): React.JSX.Element {
@@ -72,29 +135,56 @@ export default function Cart(): React.JSX.Element {
   return (
     <Wrapper>
       <Container>
-        {cartState.length === 0 ? (
-          <MyTitle>Your Cart is empty</MyTitle>
-        ) : (
-          cartItems.map((item, index) => (
-            <List key={index}>
-              <ListItem>
-                {index + 1}. {item.title} - {item.amount} - {item.price} $
-                <Menu>
-                  <GreenBtn onClick={() => decreaseItem(item.id)}>+</GreenBtn>
+        <Table>
+          <Row>
+            <ProductHeadCell>Product</ProductHeadCell>
+            <HeadCell>Price</HeadCell>
+            <HeadCell>Total Price</HeadCell>
+            <QuantityHeadCell>Quantity</QuantityHeadCell>
+          </Row>
 
-                  <YellowBtn onClick={() => increaseItem(item.id)}>
-                    -
-                  </YellowBtn>
+          {cartItems.map((item) => (
+            <Row key={item.id}>
+              <ProductCell>
+                <TableButton onClick={() => deleteItem(item.id)}>
+                  <X />
+                </TableButton>
 
-                  <RedBtn onClick={() => deleteItem(item.id)}>x</RedBtn>
-                </Menu>
-              </ListItem>
-            </List>
-          ))
-        )}
-        <br></br>
+                <Image
+                  alt={item.title}
+                  src={item.imgUrl}
+                />
 
-        <p>Total Price: {calcTotalPrice()} $</p>
+                <p>{item.title}</p>
+              </ProductCell>
+
+              <Cell>{item.price} $</Cell>
+
+              <Cell>{item.price * item.amount} $</Cell>
+
+              <QuantityCell>
+                {item.amount}
+
+                <PlusButton onClick={() => increaseItem(item.id)}>
+                  <Plus />
+                </PlusButton>
+                <MinusButton onClick={() => decreaseItem(item.id)}>
+                  <Minus />
+                </MinusButton>
+              </QuantityCell>
+            </Row>
+          ))}
+        </Table>
+
+        <Bottom>
+          {calcTotalPrice()} $
+          <BlackButton
+            to="/checkout"
+            type="button"
+          >
+            Checkout
+          </BlackButton>
+        </Bottom>
       </Container>
     </Wrapper>
   );
