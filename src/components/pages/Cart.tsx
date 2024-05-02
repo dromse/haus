@@ -1,5 +1,6 @@
 import { BlackButton } from "@components/reusable/Button";
 import Container from "@components/reusable/Container";
+import { LinkUnderline } from "@components/reusable/LinkUnderline";
 import { COLOR } from "@consts/colors";
 import products from "@consts/products.json";
 import { useCart } from "@store";
@@ -100,12 +101,30 @@ const MinusButton = styled(TableButton)`
 const Bottom = styled.div`
   padding-top: 30px;
   display: flex;
+  flex-direction: column;
   justify-content: end;
   align-items: end;
+  gap: 15px;
 `;
 
 const Image = styled.img`
   width: 100px;
+`;
+
+const TotalPrice = styled.p`
+  font-size: 24px;
+`;
+
+const Taxes = styled.p`
+  color: ${COLOR.black};
+  font-size: 18px;
+`;
+
+const Empty = styled.div`
+  color: ${COLOR.black};
+  font-size: 24px;
+  text-align: center;
+  line-height: 45px;
 `;
 
 export default function Cart(): React.JSX.Element {
@@ -132,60 +151,91 @@ export default function Cart(): React.JSX.Element {
     );
   };
 
+  const CartTable = (): React.JSX.Element => (
+    <>
+      <Table>
+        <HeaderRow />
+
+        {cartItems.map((item) => (
+          <Row key={item.id}>
+            <ProductCell>
+              <TableButton onClick={() => deleteItem(item.id)}>
+                <X />
+              </TableButton>
+
+              <Image
+                alt={item.title}
+                src={item.imgUrl}
+              />
+
+              <p>{item.title}</p>
+            </ProductCell>
+
+            <Cell>{item.price} $</Cell>
+
+            <Cell>{item.price * item.amount} $</Cell>
+
+            <QuantityCell>
+              {item.amount}
+
+              <PlusButton onClick={() => increaseItem(item.id)}>
+                <Plus />
+              </PlusButton>
+
+              <MinusButton onClick={() => decreaseItem(item.id)}>
+                <Minus />
+              </MinusButton>
+            </QuantityCell>
+          </Row>
+        ))}
+      </Table>
+
+      <Bottom>
+        <TotalPrice>{calcTotalPrice()}$</TotalPrice>
+
+        <Taxes>Taxes and shipping not included</Taxes>
+
+        <BlackButton
+          to="/checkout"
+          type="button"
+        >
+          Checkout
+        </BlackButton>
+      </Bottom>
+    </>
+  );
+
+  const EmptyCart = (): React.JSX.Element => (
+    <Empty>
+      <p>Your cart is empty!</p>
+
+      <p>
+        You can add items to cart from{" "}
+        <LinkUnderline
+          isUppercase={false}
+          href="/shop"
+        >
+          Shop
+        </LinkUnderline>{" "}
+        page.
+      </p>
+    </Empty>
+  );
+
   return (
     <Wrapper>
       <Container>
-        <Table>
-          <Row>
-            <ProductHeadCell>Product</ProductHeadCell>
-            <HeadCell>Price</HeadCell>
-            <HeadCell>Total Price</HeadCell>
-            <QuantityHeadCell>Quantity</QuantityHeadCell>
-          </Row>
-
-          {cartItems.map((item) => (
-            <Row key={item.id}>
-              <ProductCell>
-                <TableButton onClick={() => deleteItem(item.id)}>
-                  <X />
-                </TableButton>
-
-                <Image
-                  alt={item.title}
-                  src={item.imgUrl}
-                />
-
-                <p>{item.title}</p>
-              </ProductCell>
-
-              <Cell>{item.price} $</Cell>
-
-              <Cell>{item.price * item.amount} $</Cell>
-
-              <QuantityCell>
-                {item.amount}
-
-                <PlusButton onClick={() => increaseItem(item.id)}>
-                  <Plus />
-                </PlusButton>
-                <MinusButton onClick={() => decreaseItem(item.id)}>
-                  <Minus />
-                </MinusButton>
-              </QuantityCell>
-            </Row>
-          ))}
-        </Table>
-
-        <Bottom>
-          {calcTotalPrice()} $
-          <BlackButton
-            to="/checkout"
-            type="button"
-          >
-            Checkout
-          </BlackButton>
-        </Bottom>
+        {cartItems.length === 0 ? <EmptyCart /> : <CartTable />}
       </Container>
     </Wrapper>
   );
 }
+
+const HeaderRow = (): React.JSX.Element => (
+  <Row>
+    <ProductHeadCell>Product</ProductHeadCell>
+    <HeadCell>Price</HeadCell>
+    <HeadCell>Total Price</HeadCell>
+    <QuantityHeadCell>Quantity</QuantityHeadCell>
+  </Row>
+);
