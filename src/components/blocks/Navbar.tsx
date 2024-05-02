@@ -130,6 +130,7 @@ export const Navbar = (): React.JSX.Element => {
                 <LinkUnderline
                   theme="white"
                   href={item.link}
+                  onClick={() => setIsMenuVisible(false)}
                 >
                   {item.label}
                 </LinkUnderline>

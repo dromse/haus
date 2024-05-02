@@ -4,7 +4,7 @@ import styled, { RuleSet, css } from "styled-components";
 
 type Theme = "white" | "black" | "gray";
 
-const MyLink = styled(Link) <{ $theme?: Theme; $uppercase?: boolean }>`
+const MyLink = styled(Link)<{ $theme?: Theme; $uppercase?: boolean }>`
   text-transform: uppercase;
 
   ${(props): RuleSet<object> | undefined => {
@@ -47,26 +47,26 @@ const MyLink = styled(Link) <{ $theme?: Theme; $uppercase?: boolean }>`
     transition: transform 250ms ease-in-out;
 
     ${({ $theme }): RuleSet<object> | undefined => {
-    if ($theme === "white") {
-      return css`
+      if ($theme === "white") {
+        return css`
           border-color: ${COLOR.white};
         `;
-    } else if ($theme === "gray") {
-      return css`
+      } else if ($theme === "gray") {
+        return css`
           border-color: ${COLOR.white};
         `;
-    }
-  }};
+      }
+    }};
   }
 
   &:hover {
     ${({ $theme }): RuleSet<object> | undefined => {
-    if ($theme === "gray") {
-      return css`
+      if ($theme === "gray") {
+        return css`
           color: white;
         `;
-    }
-  }};
+      }
+    }};
   }
 
   &:hover:after {
@@ -80,16 +80,18 @@ type Props = {
   children: string;
   href: string;
   isUppercase?: boolean;
+  onClick?: () => unknown;
 };
 
 export const LinkUnderline = (props: Props): React.JSX.Element => {
-  const { theme, children, href, isUppercase } = props;
+  const { theme, children, href, isUppercase, onClick } = props;
 
   return (
     <MyLink
       $theme={theme}
       to={href}
       $uppercase={isUppercase}
+      onClick={onClick}
     >
       {children}
     </MyLink>
