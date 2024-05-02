@@ -49,6 +49,16 @@ export default function Login(props: LoginProps): React.JSX.Element {
 
       <Form>
         <Input
+          placeholder="First name"
+          type="text"
+        />
+
+        <Input
+          placeholder="Last Name"
+          type="text"
+        />
+
+        <Input
           placeholder="Email"
           type="email"
         />
@@ -58,27 +68,23 @@ export default function Login(props: LoginProps): React.JSX.Element {
           type="password"
         />
 
+        <Input
+          placeholder="Confirm password"
+          type="password"
+        />
+
         <Button
           title="Submit"
           href=""
         />
 
         <Subtitle>
+          Have an account?{" "}
           <LinkUnderline
             theme="gray"
-            href="/signup"
+            href="/login"
           >
-            Forget Password?
-          </LinkUnderline>
-        </Subtitle>
-
-        <Subtitle>
-          Don't have an account?{" "}
-          <LinkUnderline
-            theme="gray"
-            href="/signup"
-          >
-            Sign Up
+            Login
           </LinkUnderline>
         </Subtitle>
       </Form>

@@ -1,11 +1,12 @@
-import styled from "styled-components";
+import Container from "@components/reusable/Container";
+import FooterColumn from "@components/reusable/FooterColumn";
+import { LinkUnderline } from "@components/reusable/LinkUnderline";
+import { Subtitle } from "@components/reusable/Subtitle";
 import { COLOR } from "@consts/colors";
 import copyright from "@consts/copyright.json";
 import footer_links from "@consts/footer_links.json";
 import { GEOMETRY } from "@consts/geometry";
-import Container from "@components/reusable/Container";
-import FooterColumn from "@components/reusable/FooterColumn";
-import { LinkUnderline } from "@components/reusable/LinkUnderline";
+import styled from "styled-components";
 
 const Wrapper = styled.footer`
   background-color: ${COLOR.totalBlack};
@@ -40,12 +41,6 @@ const Title = styled.h3`
   font-family: "PT Serif", serif;
   font-size: 42px;
   line-height: 72px;
-`;
-
-const Subtitle = styled.p`
-  font-size: 18px;
-  line-height: 27px;
-  max-width: 424px;
 `;
 
 const Newsletter = styled.div`
