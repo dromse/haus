@@ -1,7 +1,10 @@
+import { MinusButton, PlusButton, TableButton } from "@components/pages/Cart";
 import { COLOR } from "@consts/colors";
 import { useCart } from "@store";
 import { Product } from "@types";
+import { Minus, Plus, X } from "lucide-react";
 import styled from "styled-components";
+import { BlackButton } from "./Button";
 
 type Props = {
   product: Product;
@@ -75,9 +78,44 @@ const Image = styled.img`
   height: auto;
 `;
 
+const Counter = styled.div`
+  border: none;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  padding-top: 15px;
+`;
+
+const Price = styled.p`
+  font-size: 24px;
+  padding-bottom: 25px;
+  font-family: "PT Serif", serif;
+  font-style: italic;
+`;
+
+const ToCartOrRemove = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+`;
+
+export const XButton = styled(TableButton)`
+  position: absolute;
+  border: none;
+  right: -50px;;
+`;
+
 export const ProductCard = ({ product }: Props): React.JSX.Element => {
-  const { imgUrl, title, content, isBestSeller } = product;
+  const { imgUrl, title, content, isBestSeller, id, price } = product;
+  const deleteItem = useCart((state) => state.deleteItem);
   const addToCart = useCart((state) => state.addItem);
+  const productInCart = useCart((state) =>
+    state.cartItems.find((item) => item.productId === id),
+  );
+  const increaseItem = useCart((state) => state.increaseItem);
+  const decreaseItem = useCart((state) => state.decreaseItem);
 
   return (
     <Wrapper>
@@ -95,14 +133,38 @@ export const ProductCard = ({ product }: Props): React.JSX.Element => {
 
       <Title>{title}</Title>
       <Content>{content}</Content>
+      <Price>{price} $</Price>
 
-      <Button
-        onClick={() => {
-          addToCart(product);
-        }}
-      >
-        Add to Cart
-      </Button>
+      {productInCart && productInCart.amount > 0 ? (
+        <>
+          <ToCartOrRemove>
+            <XButton onClick={() => deleteItem(id)}>
+              <X />
+            </XButton>
+            <BlackButton to="/cart">Go to Cart</BlackButton>
+          </ToCartOrRemove>
+
+          <Counter>
+            {productInCart ? productInCart.amount : 0}
+
+            <PlusButton onClick={() => increaseItem(id)}>
+              <Plus />
+            </PlusButton>
+
+            <MinusButton onClick={() => decreaseItem(id)}>
+              <Minus />
+            </MinusButton>
+          </Counter>
+        </>
+      ) : (
+        <Button
+          onClick={() => {
+            addToCart(product);
+          }}
+        >
+          Add to Cart
+        </Button>
+      )}
     </Wrapper>
   );
 };

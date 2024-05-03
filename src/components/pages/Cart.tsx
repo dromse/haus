@@ -63,7 +63,7 @@ const QuantityCell = styled(Cell)`
   gap: 10px;
 `;
 
-const TableButton = styled.button`
+export const TableButton = styled.button`
   min-width: 35px;
   min-height: 35px;
   color: #a8b3bd;
@@ -84,14 +84,14 @@ const TableButton = styled.button`
   }
 `;
 
-const PlusButton = styled(TableButton)`
+export const PlusButton = styled(TableButton)`
   &:active {
     color: green;
     border-color: green;
   }
 `;
 
-const MinusButton = styled(TableButton)`
+export const MinusButton = styled(TableButton)`
   &:active {
     color: red;
     border-color: red;
