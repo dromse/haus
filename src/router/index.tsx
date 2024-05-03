@@ -5,6 +5,7 @@ import {
   Navigate,
   Outlet,
   Route,
+  ScrollRestoration,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
@@ -23,6 +24,7 @@ function Layout(): React.JSX.Element {
       <Navbar />
       <Outlet />
       <Footer />
+      <ScrollRestoration />
     </Wrapper>
   );
 }
