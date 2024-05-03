@@ -1,9 +1,11 @@
 import BurgerMenuButton from "@components/reusable/BurgerMenuButton";
 import { LinkUnderline } from "@components/reusable/LinkUnderline";
+import LinkWithBadge from "@components/reusable/LinkWithBadge";
 import { Logo } from "@components/reusable/Logo";
 import { COLOR } from "@consts/colors";
 import { GEOMETRY } from "@consts/geometry";
 import nav_links from "@consts/nav_links.json";
+import { useCart } from "@store";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -73,6 +75,10 @@ const MobileList = styled.ul`
 
 export const Navbar = (): React.JSX.Element => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const totalQuantity = useCart((state) => state.cartItems).reduce(
+    (acc, item) => acc + item.amount,
+    0,
+  );
 
   function toggleBurgerMenu(): void {
     setIsMenuVisible((prev) => !prev);
@@ -100,16 +106,26 @@ export const Navbar = (): React.JSX.Element => {
         </Link>
 
         <List>
-          {nav_links.slice(3, nav_links.length).map((item) => (
-            <li key={item.link}>
-              <LinkUnderline
-                theme="white"
-                href={item.link}
-              >
-                {item.label}
-              </LinkUnderline>
-            </li>
-          ))}
+          {nav_links.slice(3, nav_links.length).map((item) =>
+            item.link === "/cart" ? (
+              <li>
+                <LinkWithBadge
+                  link={item.link}
+                  label={item.label}
+                  badgeText={String(totalQuantity)}
+                />
+              </li>
+            ) : (
+              <li key={item.link}>
+                <LinkUnderline
+                  theme="white"
+                  href={item.link}
+                >
+                  {item.label}
+                </LinkUnderline>
+              </li>
+            ),
+          )}
         </List>
       </DesktopNavigation>
 
