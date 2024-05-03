@@ -13,7 +13,7 @@ type Cart = {
 };
 
 type CartState = {
-  cart: Cart | {};
+  cart: Cart;
   cartItems: CartItem[];
   addItem: (item: Product) => void;
   deleteItem: (id: string) => void;
@@ -73,8 +73,9 @@ export const useCart = create<CartState>()(
 
             return {
               cartItems: [
-                ...state.cartItems.filter((item) => item.productId !== id),
-                { productId: id, amount },
+                ...state.cartItems.map((item) =>
+                  item.productId === id ? { ...item, amount } : item,
+                ),
               ],
             };
           }
@@ -103,8 +104,9 @@ export const useCart = create<CartState>()(
 
             return {
               cartItems: [
-                ...state.cartItems.filter((item) => item.productId !== id),
-                { productId: id, amount },
+                ...state.cartItems.map((item) =>
+                  item.productId === id ? { ...item, amount } : item,
+                ),
               ],
             };
           }
