@@ -1,9 +1,10 @@
 import BigTitle from "@components/reusable/BigTitle";
-import { Button } from "@components/reusable/Button";
 import { LinkUnderline } from "@components/reusable/LinkUnderline";
 import { Subtitle } from "@components/reusable/Subtitle";
 import { COLOR } from "@consts/colors";
-import React from "react";
+import { firebaseApp } from "@firebase";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 type LoginProps = {};
@@ -40,12 +41,47 @@ const Input = styled.input`
   max-width: 500px;
 `;
 
-export default function Login(props: LoginProps): React.JSX.Element {
+const SignUpButton = styled.button.attrs({ type: "button" })`
+  background: black;
+  border: 1px solid white;
+  padding: 20px 52px;
+  text-transform: uppercase;
+  width: max-content;
+  color: white;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  font-size: 12px;
+
+  &:hover {
+    background-color: white;
+    color: ${COLOR.black};
+    cursor: pointer;
+  }
+`;
+
+export default function Signup(props: LoginProps): React.JSX.Element {
   const {} = props;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignup = (email: string, password: string): void => {
+    const auth = getAuth(firebaseApp);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
 
   return (
     <Container>
-      <BigTitle>Login</BigTitle>
+      <BigTitle>Sign Up</BigTitle>
 
       <Form>
         <Input
@@ -61,11 +97,15 @@ export default function Login(props: LoginProps): React.JSX.Element {
         <Input
           placeholder="Email"
           type="email"
+          value={email}
+          onChange={(e) => setEmail(e.currentTarget.value)}
         />
 
         <Input
           placeholder="Password"
           type="password"
+          value={password}
+          onChange={(e) => setPassword(e.currentTarget.value)}
         />
 
         <Input
@@ -73,10 +113,9 @@ export default function Login(props: LoginProps): React.JSX.Element {
           type="password"
         />
 
-        <Button
-          title="Submit"
-          href=""
-        />
+        <SignUpButton onClick={() => handleSignup(email, password)}>
+          Submit
+        </SignUpButton>
 
         <Subtitle>
           Have an account?{" "}

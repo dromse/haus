@@ -108,7 +108,7 @@ export const Navbar = (): React.JSX.Element => {
         <List>
           {nav_links.slice(3, nav_links.length).map((item) =>
             item.link === "/cart" ? (
-              <li>
+              <li key={item.link}>
                 <LinkWithBadge
                   link={item.link}
                   label={item.label}

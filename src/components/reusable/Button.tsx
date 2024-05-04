@@ -23,12 +23,13 @@ type Props = {
   title: string;
   href: string;
   type?: string;
-};
+  onClick?: () => void
+} ;
 
 export const Button = (props: Props): React.JSX.Element => {
-  const { title, href } = props;
+  const { title, href, onClick } = props;
 
-  return <MyLink href={href}>{title}</MyLink>;
+  return <MyLink href={href} onClick={onClick}>{title}</MyLink>;
 };
 
 export const BlackButton = styled(Link)`
