@@ -1,9 +1,9 @@
 import BigTitle from "@components/reusable/BigTitle";
-import { Button } from "@components/reusable/Button";
 import { LinkUnderline } from "@components/reusable/LinkUnderline";
 import { Subtitle } from "@components/reusable/Subtitle";
 import { COLOR } from "@consts/colors";
-import React from "react";
+import { useAuth } from "@firebase";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 type LoginProps = {};
@@ -40,8 +40,30 @@ const Input = styled.input`
   max-width: 500px;
 `;
 
+const LoginButton = styled.button.attrs({ type: "button" })`
+  background: black;
+  border: 1px solid white;
+  padding: 20px 52px;
+  text-transform: uppercase;
+  width: max-content;
+  color: white;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  font-size: 12px;
+
+  &:hover {
+    background-color: white;
+    color: ${COLOR.black};
+    cursor: pointer;
+  }
+`;
+
 export default function Login(props: LoginProps): React.JSX.Element {
   const {} = props;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { login } = useAuth();
 
   return (
     <Container>
@@ -51,17 +73,20 @@ export default function Login(props: LoginProps): React.JSX.Element {
         <Input
           placeholder="Email"
           type="email"
+          value={email}
+          onChange={(e) => setEmail(e.currentTarget.value)}
         />
 
         <Input
           placeholder="Password"
           type="password"
+          value={password}
+          onChange={(e) => setPassword(e.currentTarget.value)}
         />
 
-        <Button
-          title="Submit"
-          href=""
-        />
+        <LoginButton onClick={() => login(email, password)}>
+          Submit
+        </LoginButton>
 
         <Subtitle>
           <LinkUnderline

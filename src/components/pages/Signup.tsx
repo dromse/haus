@@ -2,8 +2,7 @@ import BigTitle from "@components/reusable/BigTitle";
 import { LinkUnderline } from "@components/reusable/LinkUnderline";
 import { Subtitle } from "@components/reusable/Subtitle";
 import { COLOR } from "@consts/colors";
-import { firebaseApp } from "@firebase";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { useAuth } from "@firebase";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -64,20 +63,7 @@ export default function Signup(props: LoginProps): React.JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = (email: string, password: string): void => {
-    const auth = getAuth(firebaseApp);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
-  };
+  const { signup } = useAuth();
 
   return (
     <Container>
@@ -113,7 +99,7 @@ export default function Signup(props: LoginProps): React.JSX.Element {
           type="password"
         />
 
-        <SignUpButton onClick={() => handleSignup(email, password)}>
+        <SignUpButton onClick={() => signup(email, password)}>
           Submit
         </SignUpButton>
 
