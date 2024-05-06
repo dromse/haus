@@ -1,79 +1,89 @@
-import { initializeApp } from "firebase/app";
+import { FirebaseOptions, initializeApp } from "firebase/app";
 import {
+  User,
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { useState } from "react";
+import { Notify } from "notiflix";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: import.meta.env.VITE_API_KEY,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
 };
-
-export const firebaseApp = initializeApp(firebaseConfig);
-
-type AuthState = "guest" | "login" | "singup" | "error";
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+setPersistence(auth, browserLocalPersistence);
 
 type UseSignup = {
   signup: (email: string, password: string) => void;
   login: (email: string, password: string) => void;
   logout: () => void;
-  authState: AuthState;
-  errorMsg: string;
+  userState: User | undefined;
 };
-
-const auth = getAuth(firebaseApp);
-
 export const useAuth = (): UseSignup => {
-  const [errorMsg, setErrorMsg] = useState("");
-  const [authState, setAuthState] = useState<AuthState>("guest");
+  const [userState, setUserState] = useState<User>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserState(user);
+      } else {
+        setUserState(undefined);
+      }
+
+      return unsub;
+    });
+  }, []);
 
   const signup = (email: string, password: string): void => {
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setAuthState("singup");
-        console.log(userCredential);
+      .then(() => {
+        Notify.success("You successfully signed up!");
+
+        navigate("/account");
       })
       .catch((error) => {
-        setAuthState("error");
-        setErrorMsg(error.message);
-
-        console.log(error.message);
+        handleError(error.message);
       });
   };
 
   const login = (email: string, password: string): void => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
+      .then(() => {
+        Notify.success("You successfully logged in!");
 
-        setAuthState("singup");
-
-        console.log(user);
-        console.log(userCredential);
+        navigate("/account");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        setAuthState("error");
-        setErrorMsg(errorMessage);
-
-        console.log(errorCode, errorMessage);
+        handleError(error.message);
       });
   };
 
   const logout = (): void => {
     signOut(auth)
       .then(() => {
-        setAuthState("guest");
+        Notify.success("You successfully logged out!");
       })
       .catch((error) => {
-        setErrorMsg(error.message);
-        console.log(error.message);
+        handleError(error.message);
       });
   };
 
-  return { signup, login, logout, authState, errorMsg };
+  return { signup, login, logout, userState };
+};
+
+Notify.init({
+  position: "right-bottom",
+});
+const handleError = (msg: string): void => {
+  Notify.failure(`Error: ${msg}!`);
+  console.error(msg);
 };

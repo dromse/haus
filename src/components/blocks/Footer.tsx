@@ -70,7 +70,7 @@ const Form = styled.form`
   justify-content: space-between;
 `;
 
-const Submit = styled.button.attrs({ type: "submit" })`
+const Submit = styled.button.attrs({ type: "button" })`
   background-color: black;
   color: white;
   font-size: 16px;
