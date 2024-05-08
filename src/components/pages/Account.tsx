@@ -2,8 +2,9 @@ import BigTitle from "@components/reusable/BigTitle";
 import { BlackButton } from "@components/reusable/Button";
 import Container from "@components/reusable/Container";
 import { COLOR } from "@consts/colors";
+import { UserContext } from "@context";
 import { useAuth } from "@firebase";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 const Buttons = styled.div`
@@ -33,14 +34,15 @@ const Wrapper = styled.div`
 `;
 
 export default function Account(): React.JSX.Element {
-  const { logout, userState } = useAuth();
+  const { logout } = useAuth();
+  const user = useContext(UserContext)
 
   return (
     <Container>
       <Wrapper>
-        {userState ? (
+        {user ? (
           <>
-            <BigTitle>Hi, {userState.email}</BigTitle>
+            <BigTitle>Hi, {user.email}</BigTitle>
             <Buttons>
               <Logout onClick={logout}>Logout</Logout>
             </Buttons>

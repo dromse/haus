@@ -18,7 +18,6 @@ export default tseslint.config(
     files: ["{src,tests}/**/*.{ts,tsx}"],
     rules: {
       // eslint rules
-      "no-inline-style/no-inline-styles": 2,
       "max-params": "error",
       "no-warning-comments": [
         "error",
@@ -42,6 +41,7 @@ export default tseslint.config(
           message: "Use const assertion or a string union type instead.",
         },
       ],
+      "no-inline-style/no-inline-styles": 2,
       // Typescript rules
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "@typescript-eslint/array-type": ["error", { default: "array-simple" }],

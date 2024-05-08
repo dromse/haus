@@ -14,7 +14,6 @@ const Wrapper = styled.main`
 `;
 
 const Table = styled.table`
-  // border: 1px solid #a8b3bd;
   font-size: 24px;
   border-collapse: collapse;
   width: 100%;
@@ -22,17 +21,13 @@ const Table = styled.table`
   color: ${COLOR.black};
 `;
 
-const Row = styled.tr`
-  // border: 1px solid #a8b3bd;
-`;
+const Row = styled.tr``;
 
 const HeadCell = styled.th`
-  // border: 1px solid #a8b3bd;
   padding: 5px;
 `;
 
 const Cell = styled.td`
-  // border: 1px solid #a8b3bd;
   padding: 10px 0;
 `;
 

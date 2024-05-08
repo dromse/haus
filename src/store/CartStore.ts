@@ -8,13 +8,13 @@ type CartItem = {
 };
 
 type Cart = {
-  cartId: string;
   cartItems: CartItem[];
 };
 
 type CartState = {
   cart: Cart;
   cartItems: CartItem[];
+  setCartItems: (newCartItems: CartItem[]) => void;
   addItem: (item: Product) => void;
   deleteItem: (id: string) => void;
   increaseItem: (id: string) => void;
@@ -24,8 +24,13 @@ type CartState = {
 export const useCart = create<CartState>()(
   persist(
     (set) => ({
-      cart: { cartId: "123", cartItems: [] },
+      cart: { cartItems: [] },
       cartItems: [],
+
+      setCartItems: (newCartItems: CartItem[]): void =>
+        set(() => {
+          return { cartItems: [...newCartItems] };
+        }),
 
       addItem: (product): void =>
         set((state) => {
@@ -115,6 +120,8 @@ export const useCart = create<CartState>()(
         });
       },
     }),
-    { name: "cart-storage" },
+    {
+      name: "cart-storage",
+    },
   ),
 );

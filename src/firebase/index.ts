@@ -1,21 +1,20 @@
 import { FirebaseOptions, initializeApp } from "firebase/app";
 import {
-  User,
   browserLocalPersistence,
   createUserWithEmailAndPassword,
   getAuth,
-  onAuthStateChanged,
   setPersistence,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 import { Notify } from "notiflix";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: import.meta.env.VITE_API_KEY,
+  projectId: import.meta.env.VITE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  databaseURL: import.meta.env.VITE_DATABASE_URL,
 };
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
@@ -25,23 +24,9 @@ type UseSignup = {
   signup: (email: string, password: string) => void;
   login: (email: string, password: string) => void;
   logout: () => void;
-  userState: User | undefined;
 };
 export const useAuth = (): UseSignup => {
-  const [userState, setUserState] = useState<User>();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUserState(user);
-      } else {
-        setUserState(undefined);
-      }
-
-      return unsub;
-    });
-  }, []);
 
   const signup = (email: string, password: string): void => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -77,7 +62,7 @@ export const useAuth = (): UseSignup => {
       });
   };
 
-  return { signup, login, logout, userState };
+  return { signup, login, logout };
 };
 
 Notify.init({
@@ -87,3 +72,5 @@ const handleError = (msg: string): void => {
   Notify.failure(`Error: ${msg}!`);
   console.error(msg);
 };
+
+export { auth };
