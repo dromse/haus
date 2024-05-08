@@ -1,8 +1,11 @@
 import { MinusButton, PlusButton, TableButton } from "@components/pages/Cart";
 import { COLOR } from "@consts/colors";
+import { UserContext } from "@context";
 import { useCart } from "@store";
 import { Product } from "@types";
 import { Minus, Plus, X } from "lucide-react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BlackButton } from "./Button";
 
@@ -104,7 +107,7 @@ const ToCartOrRemove = styled.div`
 export const XButton = styled(TableButton)`
   position: absolute;
   border: none;
-  right: -50px;;
+  right: -50px;
 `;
 
 export const ProductCard = ({ product }: Props): React.JSX.Element => {
@@ -116,6 +119,8 @@ export const ProductCard = ({ product }: Props): React.JSX.Element => {
   );
   const increaseItem = useCart((state) => state.increaseItem);
   const decreaseItem = useCart((state) => state.decreaseItem);
+  const user = useContext(UserContext);
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
@@ -159,7 +164,11 @@ export const ProductCard = ({ product }: Props): React.JSX.Element => {
       ) : (
         <Button
           onClick={() => {
-            addToCart(product);
+            if (user) {
+              addToCart(product);
+            } else {
+              navigate("/account");
+            }
           }}
         >
           Add to Cart

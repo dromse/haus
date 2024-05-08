@@ -27,6 +27,7 @@ export default function App(): React.JSX.Element {
         });
       } else {
         setUser(undefined);
+        setCartItems([])
       }
     });
 

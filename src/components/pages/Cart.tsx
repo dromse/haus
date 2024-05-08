@@ -1,12 +1,14 @@
+import BigTitle from "@components/reusable/BigTitle";
 import { BlackButton } from "@components/reusable/Button";
 import Container from "@components/reusable/Container";
 import { LinkUnderline } from "@components/reusable/LinkUnderline";
 import { COLOR } from "@consts/colors";
 import products from "@consts/products.json";
+import { UserContext } from "@context";
 import { useCart } from "@store";
 import { Product } from "@types";
 import { Minus, Plus, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.main`
@@ -129,6 +131,7 @@ export default function Cart(): React.JSX.Element {
   const decreaseItem = useCart((state) => state.decreaseItem);
   const [productData, _] = useState(products);
   const [cartItems, setCartItems] = useState<Product[]>([]);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     const items = cartState.map((item) => ({
@@ -217,12 +220,20 @@ export default function Cart(): React.JSX.Element {
     </Empty>
   );
 
+  if (user) {
+    return (
+      <Wrapper>
+        <Container>
+          {cartItems.length === 0 ? <EmptyCart /> : <CartTable />}
+        </Container>
+      </Wrapper>
+    );
+  }
+
   return (
-    <Wrapper>
-      <Container>
-        {cartItems.length === 0 ? <EmptyCart /> : <CartTable />}
-      </Container>
-    </Wrapper>
+    <Container>
+      <BigTitle>You need to log in or sign up before using cart!</BigTitle>;
+    </Container>
   );
 }
 
