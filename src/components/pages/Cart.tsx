@@ -21,16 +21,33 @@ const Table = styled.table`
   width: 100%;
   text-align: center;
   color: ${COLOR.black};
+
+  @media (max-width: 748px) {
+    text-align: center;
+  }
 `;
 
 const Row = styled.tr``;
 
 const HeadCell = styled.th`
   padding: 5px;
+
+  @media (max-width: 748px) {
+    display: none;
+  }
 `;
 
 const Cell = styled.td`
   padding: 10px 0;
+
+  @media (max-width: 748px) {
+    display: block;
+  }
+`;
+
+const PriceCell = styled(Cell)`
+  font-family: "PT Serif", serif;
+  font-style: italic;
 `;
 
 const ProductHeadCell = styled(HeadCell)`
@@ -50,6 +67,10 @@ const ProductCell = styled(Cell)`
 const QuantityHeadCell = styled(HeadCell)`
   display: flex;
   justify-content: end;
+
+  @media (max-width: 748px) {
+    display: none;
+  }
 `;
 
 const QuantityCell = styled(Cell)`
@@ -58,6 +79,10 @@ const QuantityCell = styled(Cell)`
   justify-content: end;
   align-items: center;
   gap: 10px;
+
+  @media (max-width: 748px) {
+    justify-content: center;
+  }
 `;
 
 export const TableButton = styled.button`
@@ -110,6 +135,9 @@ const Image = styled.img`
 
 const TotalPrice = styled.p`
   font-size: 24px;
+
+  font-family: "PT Serif", serif;
+  font-style: italic;
 `;
 
 const Taxes = styled.p`
@@ -161,17 +189,14 @@ export default function Cart(): React.JSX.Element {
                 <X />
               </TableButton>
 
-              <Image
-                alt={item.title}
-                src={item.imgUrl}
-              />
+              <Image alt={item.title} src={item.imgUrl} />
 
               <p>{item.title}</p>
             </ProductCell>
 
-            <Cell>{item.price} $</Cell>
+            <PriceCell>{item.price} $</PriceCell>
 
-            <Cell>{item.price * item.amount} $</Cell>
+            <PriceCell>{item.price * item.amount} $</PriceCell>
 
             <QuantityCell>
               {item.amount}
@@ -193,10 +218,7 @@ export default function Cart(): React.JSX.Element {
 
         <Taxes>Taxes and shipping not included</Taxes>
 
-        <BlackButton
-          to="/checkout"
-          type="button"
-        >
+        <BlackButton to="/checkout" type="button">
           Checkout
         </BlackButton>
       </Bottom>
@@ -209,10 +231,7 @@ export default function Cart(): React.JSX.Element {
 
       <p>
         You can add items to cart from{" "}
-        <LinkUnderline
-          isUppercase={false}
-          href="/shop"
-        >
+        <LinkUnderline isUppercase={false} href="/shop">
           Shop
         </LinkUnderline>{" "}
         page.
