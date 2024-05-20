@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BlackButton } from "./Button";
+import { Confirm } from "notiflix";
 
 type Props = {
   product: Product;
@@ -122,6 +123,20 @@ export const ProductCard = ({ product }: Props): React.JSX.Element => {
   const user = useContext(UserContext);
   const navigate = useNavigate();
 
+  const handleDeleteItem = (productId: string): void => {
+    Confirm.show(
+      "Remove Confirm",
+      "Do you want to remove product?",
+      "Yes",
+      "No",
+      () => {
+        deleteItem(productId);
+      },
+      () => {},
+      { okButtonBackground: "#f080a0", titleColor: "#f080a0" },
+    );
+  };
+
   return (
     <Wrapper>
       {isBestSeller && (
@@ -143,7 +158,7 @@ export const ProductCard = ({ product }: Props): React.JSX.Element => {
       {productInCart && productInCart.amount > 0 ? (
         <>
           <ToCartOrRemove>
-            <XButton onClick={() => deleteItem(id)}>
+            <XButton onClick={() => handleDeleteItem(id)}>
               <X />
             </XButton>
             <BlackButton to="/cart">Go to Cart</BlackButton>

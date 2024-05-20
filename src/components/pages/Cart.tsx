@@ -8,6 +8,7 @@ import { UserContext } from "@context";
 import { useCart } from "@store";
 import { Product } from "@types";
 import { Minus, Plus, X } from "lucide-react";
+import { Confirm } from "notiflix";
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -177,6 +178,20 @@ export default function Cart(): React.JSX.Element {
     );
   };
 
+  const handleDeleteItem = (productId: string): void => {
+    Confirm.show(
+      "Remove Confirm",
+      "Do you want to remove product?",
+      "Yes",
+      "No",
+      () => {
+        deleteItem(productId);
+      },
+      () => {},
+      { okButtonBackground: "#f080a0", titleColor: "#f080a0" },
+    );
+  };
+
   const CartTable = (): React.JSX.Element => (
     <>
       <Table>
@@ -185,7 +200,7 @@ export default function Cart(): React.JSX.Element {
         {cartItems.map((item) => (
           <Row key={item.id}>
             <ProductCell>
-              <TableButton onClick={() => deleteItem(item.id)}>
+              <TableButton onClick={() => handleDeleteItem(item.id)}>
                 <X />
               </TableButton>
 
