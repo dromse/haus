@@ -1,7 +1,8 @@
+import BurgerMenu from "@components/reusable/BurgerMenu";
 import BurgerMenuButton from "@components/reusable/BurgerMenuButton";
-import { LinkUnderline } from "@components/reusable/LinkUnderline";
 import LinkWithBadge from "@components/reusable/LinkWithBadge";
 import { Logo } from "@components/reusable/Logo";
+import NavbarLink from "@components/reusable/NavbarLink";
 import { COLOR } from "@consts/colors";
 import { GEOMETRY } from "@consts/geometry";
 import nav_links from "@consts/nav_links.json";
@@ -57,22 +58,6 @@ const MobileNavigation = styled(Navigation)`
   }
 `;
 
-const MobileList = styled.ul`
-  position: fixed;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  right: 0;
-  width: 100vw;
-  height: 100vh;
-  font-size: 25px;
-  background-color: ${COLOR.background};
-`;
-
 export const Navbar = (): React.JSX.Element => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const totalQuantity = useCart((state) => state.cartItems).reduce(
@@ -80,24 +65,14 @@ export const Navbar = (): React.JSX.Element => {
     0,
   );
 
-  function toggleBurgerMenu(): void {
-    setIsMenuVisible((prev) => !prev);
-  }
+  const toggleBurgerMenu = (): void => setIsMenuVisible((prev) => !prev);
 
   return (
     <Wrapper>
       <DesktopNavigation>
         <List>
           {nav_links.slice(0, 3).map((item) => (
-            <li key={item.link}>
-              <LinkUnderline
-                theme="white"
-                href={item.link}
-                key={item.link}
-              >
-                {item.label}
-              </LinkUnderline>
-            </li>
+            <NavbarLink item={item} />
           ))}
         </List>
 
@@ -116,14 +91,7 @@ export const Navbar = (): React.JSX.Element => {
                 />
               </li>
             ) : (
-              <li key={item.link}>
-                <LinkUnderline
-                  theme="white"
-                  href={item.link}
-                >
-                  {item.label}
-                </LinkUnderline>
-              </li>
+              <NavbarLink item={item} />
             ),
           )}
         </List>
@@ -139,21 +107,7 @@ export const Navbar = (): React.JSX.Element => {
           onClick={toggleBurgerMenu}
         />
 
-        {isMenuVisible && (
-          <MobileList>
-            {nav_links.map((item) => (
-              <li key={item.link}>
-                <LinkUnderline
-                  theme="white"
-                  href={item.link}
-                  onClick={() => setIsMenuVisible(false)}
-                >
-                  {item.label}
-                </LinkUnderline>
-              </li>
-            ))}
-          </MobileList>
-        )}
+        {isMenuVisible && <BurgerMenu setIsMenuVisible={setIsMenuVisible} />}
       </MobileNavigation>
     </Wrapper>
   );

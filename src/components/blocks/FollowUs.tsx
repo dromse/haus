@@ -1,5 +1,6 @@
 import Container from "@components/reusable/Container";
-import { LinkUnderline } from "@components/reusable/LinkUnderline";
+import OtherSocial from "@components/reusable/OtherSocial";
+import Spotify from "@components/reusable/Spotify";
 import { COLOR } from "@consts/colors";
 import styled from "styled-components";
 
@@ -56,44 +57,9 @@ const BodyItem = styled.div`
   }
 `;
 
-const Title = styled.h2`
-  font-family: "PT Serif", serif;
-  font-size: 55px;
-  line-height: 80px;
-
-  @media (max-width: 500px) {
-    font-size: 45px;
-    line-height: 45px;
-  }
-`;
-
-const Subtitle = styled.p`
+export const FollowUsSubtitle = styled.p`
   font-size: 16px;
   line-height: 28px;
-`;
-
-const Button = styled.a`
-  text-transform: uppercase;
-  word-spacing: 1px;
-  font-size: 12px;
-  background-color: ${COLOR.white};
-  color: ${COLOR.black};
-  padding: 20px 50px;
-  border: 1px solid ${COLOR.white};
-  transition: all 0.3s ease;
-  display: inline-block;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${COLOR.black};
-    color: ${COLOR.white};
-  }
-`;
-
-const Links = styled.div`
-  display: flex;
-  gap: 21px;
-  flex-wrap: wrap;
 `;
 
 const MyContainer = styled(Container)`
@@ -109,41 +75,11 @@ function FollowUs(): React.JSX.Element {
       <MyContainer>
         <Body>
           <BodyItem>
-            <Title>Set the mood</Title>
-
-            <Subtitle>
-              Curated playlists from Woody + Helena, plus some of our friends
-              and favorite brands.
-            </Subtitle>
-
-            <Button>Spotify</Button>
+            <Spotify />
           </BodyItem>
 
           <BodyItem>
-            <Subtitle>Follow us, share us, drink Ha(us)</Subtitle>
-
-            <Links>
-              <LinkUnderline
-                href="instagram"
-                theme="white"
-              >
-                Instagram
-              </LinkUnderline>
-
-              <LinkUnderline
-                href="instagram"
-                theme="white"
-              >
-                Twitter
-              </LinkUnderline>
-
-              <LinkUnderline
-                href="instagram"
-                theme="white"
-              >
-                Facebook
-              </LinkUnderline>
-            </Links>
+            <OtherSocial />
           </BodyItem>
         </Body>
       </MyContainer>

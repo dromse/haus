@@ -1,5 +1,5 @@
 import BigTitle from "@components/reusable/BigTitle";
-import { BlackButton } from "@components/reusable/Button";
+import { BlackButtonRDOM } from "@components/reusable/Button";
 import Container from "@components/reusable/Container";
 import { COLOR } from "@consts/colors";
 import { UserContext } from "@context";
@@ -52,8 +52,8 @@ export default function Account(): React.JSX.Element {
             <BigTitle>You are not authenticated!</BigTitle>
 
             <Buttons>
-              <BlackButton to="/login">Login</BlackButton>
-              <BlackButton to="/signup">Sign Up</BlackButton>
+              <BlackButtonRDOM to="/login">Login</BlackButtonRDOM>
+              <BlackButtonRDOM to="/signup">Sign Up</BlackButtonRDOM>
             </Buttons>
           </>
         )}

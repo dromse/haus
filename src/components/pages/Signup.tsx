@@ -59,7 +59,7 @@ const SignUpButton = styled.button.attrs({ type: "button" })`
 `;
 
 export default function Signup(props: LoginProps): React.JSX.Element {
-  const {} = props;
+  const { } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -70,15 +70,9 @@ export default function Signup(props: LoginProps): React.JSX.Element {
       <BigTitle>Sign Up</BigTitle>
 
       <Form>
-        <Input
-          placeholder="First name"
-          type="text"
-        />
+        <Input placeholder="First name" type="text" />
 
-        <Input
-          placeholder="Last Name"
-          type="text"
-        />
+        <Input placeholder="Last Name" type="text" />
 
         <Input
           placeholder="Email"
@@ -94,10 +88,7 @@ export default function Signup(props: LoginProps): React.JSX.Element {
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
 
-        <Input
-          placeholder="Confirm password"
-          type="password"
-        />
+        <Input placeholder="Confirm password" type="password" />
 
         <SignUpButton onClick={() => signup(email, password)}>
           Submit
@@ -105,10 +96,7 @@ export default function Signup(props: LoginProps): React.JSX.Element {
 
         <Subtitle>
           Have an account?{" "}
-          <LinkUnderline
-            theme="gray"
-            href="/login"
-          >
+          <LinkUnderline theme="gray" href="/login">
             Login
           </LinkUnderline>
         </Subtitle>
